@@ -14,19 +14,19 @@ public class Persona {
 	
 	//
 	
-	public static boolean exVerificarDNI (String dni)
+	public static boolean exVerificarDNI (String dni) throws ExVerificarDNI
 	{
-		boolean auxDni = false;
-		if (dni.length() < 10000000 || dni.length() > 99999999)
-		{
-			auxDni = true;
-		}
-		if (auxDni == true)
+		if (dni.length() != 8)
 		{
 			ExVerificarDNI exc1 = new ExVerificarDNI();
-			throw exc1;	
-		}
-		return false;
+	        throw exc1;
+	    }
+		for (int i = 0; i < dni.length(); i++) {
+	        if (!Character.isDigit(dni.charAt(i))) {
+	            throw new ExVerificarDNI();
+	        }
+	    }
+	    return true;
 	}
 	
 	//
