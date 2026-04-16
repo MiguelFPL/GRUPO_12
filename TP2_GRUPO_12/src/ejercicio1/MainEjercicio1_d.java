@@ -2,6 +2,7 @@ package ejercicio1;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class MainEjercicio1_d {
 
@@ -21,7 +22,10 @@ public class MainEjercicio1_d {
 		listaPersonas.add(p4);
 		listaPersonas.add(p5);
 		
-		for (Persona p : listaPersonas) {
+		Iterator<Persona> iteratorPer = listaPersonas.iterator();
+		while (iteratorPer.hasNext())
+		{
+			Persona p = (Persona) iteratorPer.next();
 			System.out.println(p.toString());
 		}
 	}
