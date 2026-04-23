@@ -2,6 +2,8 @@ package main;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import dao.DaoCategoria;
 import dao.DaoProducto;
 import entidad.Categoria;
@@ -69,10 +71,10 @@ public class Principal {
 		
 //LISTADO CATEGORIAS
 
-		ArrayList<Categoria> lCategoria = daoCat.obtenerTodasLasCategorias();
-		for (Categoria cat : lCategoria)
-		{
-			System.out.println(cat.toString());
-		}
+//		ArrayList<Categoria> lCategoria = daoCat.obtenerTodasLasCategorias();
+//		for (Categoria cat : lCategoria)
+//		{
+//			System.out.println(cat.toString());
+//		}
 	}
 }
