@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
+import entidad.Categoria;
 import entidad.Producto;
 
 public class DaoProducto {
@@ -17,7 +19,7 @@ public class DaoProducto {
 	
 	public int agregarProducto (Producto producto)
 	{
-		String query = "Insert into productos(Codigo, Nombre, Precio, Stock) values ('" + producto.getCodigo() + "','" + producto.getNombre() + "','" + producto.getPrecio() + "','" + producto.getStock() + "','" + producto.getCategoria().getId() + "')";
+		String query = "Insert into productos(Codigo, Nombre, Precio, Stock, IdCategoria) values ('" + producto.getCodigo() + "','" + producto.getNombre() + "','" + producto.getPrecio() + "','" + producto.getStock() + "','" + producto.getCategoria().getId() + "')";
 		Connection cn = null;
 		int filas = 0;
 	
@@ -95,7 +97,11 @@ public class DaoProducto {
 				x.setNombre (rs.getString("Nombre"));
 				x.setPrecio (rs.getDouble("Precio"));
 				x.setStock (rs.getInt("Stock"));
-				x.getCategoria().setId(rs.getInt("IdCategoria"));
+				
+				Categoria c = new Categoria();
+			    c.setId(rs.getInt("IdCategoria"));
+			    
+			    x.setCategoria(c);
 				LProductos.add(x);
 			}
 		}		 
