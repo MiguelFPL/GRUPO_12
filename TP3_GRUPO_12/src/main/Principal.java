@@ -51,6 +51,5 @@ public class Principal {
 		//me falta setear la categoria me dejo de funcionar la cabeza x2
 		
 		daoPro.procedimientoAlmacenadoAltaProducto(pro2);
-	}
-	
+	}	
 }

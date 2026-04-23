@@ -1,6 +1,5 @@
 package dao;
 
-
 import entidad.Categoria;
 
 import java.sql.Statement;

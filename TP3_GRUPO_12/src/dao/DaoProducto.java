@@ -38,7 +38,8 @@ public class DaoProducto {
 	{
 		int filas = 0;
 		Connection cn = null;
-		try {
+		try
+		{
 			cn = DriverManager.getConnection(host+dbName, user, pass);
 			CallableStatement cst = cn.prepareCall("CALL sp_AgregarProducto(?,?,?,?,?)");
 			cst.setString(1, producto.getCodigo());
@@ -47,7 +48,9 @@ public class DaoProducto {
 			cst.setInt(4, producto.getStock());
 			cst.setInt(5, producto.getCategoria().getId());
 			cst.execute();
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 		return filas;
