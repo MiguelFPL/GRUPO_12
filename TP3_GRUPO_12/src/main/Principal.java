@@ -69,12 +69,10 @@ public class Principal {
 		
 //LISTADO CATEGORIAS
 
-//		ArrayList<Categoria> lCategoria = daoCat.obtenerTodasLasCategorias();
-//		for (Categoria cat : lCategoria)
-//		{
-//			System.out.println(cat.toString());
-//		}
-		
-// hay algo mal a la hora de listar las categorias, pone el id en 0 cuando deberia ser 1 en la primer categoria, debe ser por que usa el id que pusimos en la clase categoria
+		ArrayList<Categoria> lCategoria = daoCat.obtenerTodasLasCategorias();
+		for (Categoria cat : lCategoria)
+		{
+			System.out.println(cat.toString());
+		}
 	}
 }

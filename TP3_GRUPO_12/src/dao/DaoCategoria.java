@@ -72,6 +72,7 @@ public class DaoCategoria {
             {
                 Categoria x = new Categoria();
                 x.setNombre (rs.getString("Nombre"));
+                x.setId(rs.getInt("IdCategoria"));
                 LCategorias.add(x);
             }
          }
