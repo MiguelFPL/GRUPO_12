@@ -38,7 +38,7 @@ public class DaoCategoria {
 	public int bajaCategoria(Categoria categoria) 
     {
 
-        String query = "UPDATE categorias SET estado =0 where id=?";
+        String query = "UPDATE categorias SET estado =0 where IdCategoria=?";
         int filas=0;
 
         Connection cn = null;
@@ -85,7 +85,7 @@ public class DaoCategoria {
 
 	public int modificarCategoria(Categoria categoria) 
     {
-        String query = "UPDATE categorias SET Nombre =? where id=?";
+        String query = "UPDATE categorias SET Nombre =? where IdCategoria=?";
         int filas=0;
 
         Connection cn = null;
