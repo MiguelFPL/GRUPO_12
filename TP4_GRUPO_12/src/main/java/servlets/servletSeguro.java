@@ -42,7 +42,7 @@ public class servletSeguro extends HttpServlet {
 			SeguroDao sd = new SeguroDao();
 			filas = sd.agregarSeguro(s);
 		}
-		
+		request.setAttribute("cantFilas", filas);
 		RequestDispatcher rd = request.getRequestDispatcher("/AgregarSeguro.jsp");
 		rd.forward(request, response);
 	}

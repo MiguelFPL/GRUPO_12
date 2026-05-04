@@ -30,5 +30,17 @@
 	<input type = "submit" name = "bntAceptar" value = "Aceptar">
 	</form>
 
+	<%
+	int filas = Integer.parseInt(request.getAttribute("cantFilas").toString());
+	%>
+
+	<%
+	if (filas == 1) {
+	%>
+	Seguro agregado
+	<%
+	}
+	%>
+
 </body>
 </html>
