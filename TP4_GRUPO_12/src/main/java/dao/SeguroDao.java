@@ -16,9 +16,14 @@ public class SeguroDao {
 	private String dbName = "segurosgroup";
 
 	public int agregarSeguro(Seguro seguro) {
-		String query = "Insert into seguros(descripcion, idTipo, costoContratacion, costoAsegurado) VALUES ('"
-				+ seguro.getDescripcion() + "','" + seguro.getTipoSeguros().getIdTipo()
-				+ "','" + seguro.getCostoContratacion() + "','" + seguro.getCostoAsegurado();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		String query = "Insert into seguros(idSeguro, descripcion, idTipo, costoContratacion, costoAsegurado) values ('"
+				+ seguro.getIdSeguro() + "','" + seguro.getDescripcion() + "','" + seguro.getTipoSeguros().getIdTipo()
+				+ "','" + seguro.getCostoContratacion() + "','" + seguro.getCostoAsegurado() + "')";
 		Connection cn = null;
 		int filas = 0;
 
@@ -32,12 +37,42 @@ public class SeguroDao {
 		return filas;
 	}
 
+	public int obtenerProximoId() {
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		int proximoId = 1;
+		Connection cn = null;
+		try {
+			cn = DriverManager.getConnection(host + dbName, user, pass);
+			String query = "SELECT IFNULL(MAX(idSeguro), 0) + 1 as proximoId FROM seguros";
+			Statement st = cn.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			if (rs.next()) {
+				proximoId = rs.getInt("proximoId");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return proximoId;
+	}
+
 	public ArrayList<Seguro> obtenerTodosLosSeguros() {
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+			
 		ArrayList<Seguro> LSeguros = new ArrayList<Seguro>();
 		Connection cn = null;
 		try {
 			cn = DriverManager.getConnection(host + dbName, user, pass);
-			String query = "Select * from seguros";
+			String query = "SELECT s.*, t.descripcion as tipoDescripcion FROM seguros s JOIN tiposeguros t ON s.idTipo = t.idTipo";
 			Statement st = cn.createStatement();
 			ResultSet rs = st.executeQuery(query);
 			while (rs.next()) {
@@ -49,6 +84,7 @@ public class SeguroDao {
 
 				TipoSeguros t = new TipoSeguros();
 				t.setIdTipo(rs.getInt("idTipo"));
+				t.setDescripcion(rs.getString("tipoDescripcion"));
 
 				x.setTipoSeguros(t);
 				LSeguros.add(x);
@@ -58,8 +94,14 @@ public class SeguroDao {
 		}
 		return LSeguros;
 	}
-	
+
 	public ArrayList<Seguro> obtenerSegurosPorTipo(int idTipo) {
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 		ArrayList<Seguro> LSeguros = new ArrayList<Seguro>();
 		Connection cn = null;
 		try {
@@ -86,6 +128,4 @@ public class SeguroDao {
 		}
 		return LSeguros;
 	}
-	
-	
 }
